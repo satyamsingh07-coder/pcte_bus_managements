@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PCTE Bus Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============ LOGIN ============ -->
+  <div id="login">
+    <form id="loginForm" class="login-box">
+      <div class="logo">🚌</div>
+      <h1 id="loginInst">PCTE Group of Institutes</h1>
+      <h2 id="loginTitle">Bus Management System</h2>
+      <label>Username</label>
+      <input id="lu" value="admin" autocomplete="username" required>
+      <label>Password</label>
+      <input id="lp" type="password" autocomplete="current-password" required>
+      <button class="btn full">Login</button>
+      <p class="hint" id="loginHint">Demo login: <b>admin</b> / <b>admin123</b></p>
+    </form>
+  </div>
+
+  <!-- ============ APP ============ -->
+  <div id="app" class="hidden">
+    <aside id="sidebar">
+      <div class="brand">🚌 <span id="brandName">PCTE Transport</span></div>
+      <nav>
+        <a data-sec="dashboard" class="active">📊 Dashboard</a>
+        <a data-sec="buses">🚍 Buses</a>
+        <a data-sec="routes">🗺️ Routes &amp; Stops</a>
+        <a data-sec="students">🎓 Students</a>
+        <a data-sec="seats">💺 Seat Map</a>
+        <a data-sec="waitlist">⏳ Waiting List</a>
+        <a data-sec="fees">💰 Fees</a>
+        <a data-sec="dsa">🧠 DSA Concepts</a>
+        <a data-sec="settings">⚙️ Settings</a>
+      </nav>
+      <button class="btn ghost-w" id="logoutBtn">Logout</button>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <button id="menuBtn" class="icon">☰</button>
+        <h3 id="pageTitle">Dashboard</h3>
+        <div class="top-actions">
+          <button class="btn small ghost" id="undoBtn">↶ Undo (<span id="undoCount">0</span>)</button>
+          <button class="btn small ghost" id="resetBtn">Reset Demo Data</button>
+        </div>
+      </header>
+
+      <section id="sec-dashboard" class="sec"></section>
+
+      <section id="sec-buses" class="sec hidden">
+        <div class="toolbar">
+          <input id="busSearch" placeholder="Search bus no / route / driver…">
+          <button class="btn" id="binBtn">Binary Search (exact bus no)</button>
+          <select id="busSort">
+            <option value="no">Sort: Bus No (Merge Sort)</option>
+            <option value="capacity">Sort: Capacity</option>
+            <option value="fare">Sort: Fare</option>
+            <option value="time">Sort: Departure Time</option>
+          </select>
+          <button class="btn green" id="addBusBtn">+ Add Bus</button>
+        </div>
+        <div id="binInfo" class="info hidden"></div>
+        <div class="card tbl" id="busTable"></div>
+      </section>
+
+      <section id="sec-routes" class="sec hidden">
+        <p class="muted">Each route's stops are stored in a <b>Singly Linked List</b>. You can append a stop, insert
+          after a given stop, or remove a stop.</p>
+        <div id="routeList"></div>
+      </section>
+
+      <section id="sec-students" class="sec hidden">
+        <div class="toolbar">
+          <input id="stuSearch" placeholder="Search name / roll no / course…">
+          <button class="btn green" id="addStuBtn">+ Register Student</button>
+        </div>
+        <div class="card tbl" id="stuTable"></div>
+      </section>
+
+      <section id="sec-seats" class="sec hidden">
+        <div class="toolbar">
+          <label>Select Bus:</label>
+          <select id="seatBus"></select>
+        </div>
+        <div class="card" id="seatMap"></div>
+      </section>
+
+      <section id="sec-waitlist" class="sec hidden">
+        <p class="muted">When a bus is full, a student is placed in a <b>Queue (FIFO)</b>. When a seat frees up, the
+          first student waiting for that bus is promoted automatically.</p>
+        <div class="card tbl" id="waitTable"></div>
+      </section>
+
+      <section id="sec-fees" class="sec hidden">
+        <div class="stats" id="feeStats"></div>
+        <div class="card tbl" id="feeTable"></div>
+      </section>
+
+      <section id="sec-dsa" class="sec hidden"></section>
+
+      <section id="sec-settings" class="sec hidden set"></section>
+    </main>
+  </div>
+
+  <!-- ============ MODAL ============ -->
+  <div id="modal" class="modal hidden">
+    <div class="box">
+      <h3 id="mTitle"></h3>
+      <div id="mBody"></div>
+    </div>
+  </div>
+  <div id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
